@@ -1,6 +1,6 @@
 // // Login.tsx
 import { useState } from 'react';
-import { customAxios } from '../../utils/customAxios';
+import axios from '../../utils/axios';
 import { Button, LoginContainer, Title } from './login.styles';
 import { useNavigate } from 'react-router-dom';
 
@@ -56,9 +56,8 @@ const Login = () => {
     try {
       switch (index) {
         case 0: {
-          const response = await customAxios.post('/login/s1', { email, password });
+          const response = await axios.post('/login/s1', { email, password });
           if (response.status === 200) {
-            console.log('🍌', response)
             setUserID(response.data.payload)
             setIndex(1)
           } else {
@@ -67,10 +66,9 @@ const Login = () => {
           break;
         }
         case 1: {
-          const response = await customAxios.post(`/login/s2/${userID}`, { pin });
-          console.log('🍉', response)
+          const response = await axios.post(`/login/s2/${userID}`, { pin });
           if (response.status === 200) {
-            
+           
             navigate('/')
           } else {
             setMessage('Pin was wrong, please try again...')

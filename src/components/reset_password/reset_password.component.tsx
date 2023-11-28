@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Container, Title, PasswordInput, VerifyPasswordInput, ResetButton } from './reset_password.styles';
-import { customAxios } from '../../utils/customAxios';
+import axios from '../../utils/axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const ResetPassword: React.FC = () => {
@@ -12,7 +12,7 @@ const ResetPassword: React.FC = () => {
 
     const handlePin = async () => {
 
-        const response = await customAxios.post(`/reset_password/${token}`, { password, confirmPassword })
+        const response = await axios.post(`/reset_password/${token}`, { password, confirmPassword })
         if (response.status === 200) {
             navigate('/')
         }
