@@ -3,6 +3,8 @@ import { useState } from 'react';
 import axios from '../../utils/axios';
 import { Button, LoginContainer, Title } from './login.styles';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../store/redux_slices/user.slice';
 
 const Login = () => {
   const [index, setIndex] = useState(0)
@@ -12,7 +14,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [userID, setUserID] = useState('')
   const navigate = useNavigate()
-
+  const dispatch = useDispatch()
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === 'email') {
       setEmail(event.target.value)
@@ -68,7 +70,7 @@ const Login = () => {
         case 1: {
           const response = await axios.post(`/login/s2/${userID}`, { pin });
           if (response.status === 200) {
-           
+            dispatch(updateUser({name: 'DonaldDuck'}))
             navigate('/')
           } else {
             setMessage('Pin was wrong, please try again...')
