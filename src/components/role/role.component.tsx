@@ -1,4 +1,4 @@
-import { colorBook } from '../../global.styles'
+import { colorBook } from '../../style/global.styles'
 import { Container, Div, P } from './role.styles'
 export type RoleType = 'admin' | 'master' | 'padwan'
 

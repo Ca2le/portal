@@ -14,13 +14,17 @@ const user = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        updateUser(state, action: PayloadAction<IUser>) {
+        setName(state, action: PayloadAction<string>) {
             const payload = action.payload
-            return { ...state, ...payload };
+            state.name = payload
+        },
+        setImage(state, action: PayloadAction<string>) {
+            const payload = action.payload
+            state.imageURL = payload
         }
     }
 })
 
 export default user.reducer
 
-export const { updateUser } = user.actions
+export const { setName, setImage } = user.actions

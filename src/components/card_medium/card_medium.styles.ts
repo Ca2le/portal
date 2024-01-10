@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import global from "../../global.styles";
+import global from "../../style/global.styles";
 interface IShadow {
     color: string
 }

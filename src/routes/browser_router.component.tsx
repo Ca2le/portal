@@ -1,45 +1,41 @@
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom"
-import Login from "../components/login/login.component"
-import ResetPassword from "../components/reset_password/reset_password.component"
-import Home from "./home.component"
-import Navbar from "../components/navbar/navbar.component"
-import Recipe from "./recepie.component"
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import Login from "../components/login/login.component";
+import ResetPassword from "../components/reset_password/reset_password.component";
+import Home from "./pages/home/home.page";
+import Recipe from "./pages/recipe/recipe.page";
+import ProtectedRoutes from "./protective_route.component";
 const Root = () => {
-    return (
-        <>
-            <Navbar />
-            <Outlet />
-        </>
-    )
-}
+  return (
+      <ProtectedRoutes />
+  );
+};
 const Router = () => {
-
-    const router = createBrowserRouter([
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Root />,
+      children: [
         {
-            path: "/",
-            element: <Root />,
-            children: [
-                {
-                    path: "/",
-                    element: <Home />,
-                },
-                {
-                    path: "/recept",
-                    element: <Recipe />,
-                },
-                {
-                    path: "/login",
-                    element: <Login />,
-                },
-                {
-                    path: "/reset_password/:token",
-                    element: <ResetPassword />,
-                },
-            ]
+          path: "/",
+          element: <Home />,
         },
-    ])
+        {
+          path: "/recipes",
+          element: <Recipe />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/reset_password/:token",
+          element: <ResetPassword />,
+        },
+      ],
+    },
+  ]);
 
-    return <RouterProvider router={router} />
-}
+  return <RouterProvider router={router} />;
+};
 
-export default Router
+export default Router;

@@ -1,6 +1,6 @@
 import React from 'react'
-import FeatureGrid from '../components/feature_grid/feature_grid.component'
-import StatasticGrid from '../components/statistic_grid/statistic_grid.component'
+import FeatureGrid from '../../../components/feature_grid/feature_grid.component'
+import StatasticGrid from '../../../components/statistic_grid/statistic_grid.component'
 import { Container, Div, H } from './home.styles'
 
 function Home() {

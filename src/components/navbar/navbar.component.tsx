@@ -1,33 +1,43 @@
 // import Link from '../link/link.component'
-import Link from '../link/link.component'
-import Role from '../role/role.component'
-import { Container, HeaderDiv, ID, Img, LinkContainer, Name, Profile, TextArea } from './navbar.styles'
+import { useSelector } from "react-redux";
+import Linkfield from "../linkfield/linkfield.component";
+import Role from "../role/role.component";
+import {
+  Container,
+  HeaderDiv,
+  ID,
+  Img,
+  LinkContainer,
+  Name,
+  Profile,
+  TextArea,
+} from "./navbar.styles";
+import { RootState } from "../../store/configureStore";
 
 function Navbar() {
+  const name = useSelector((state: RootState) => state.user.name);
   return (
     <Container>
       <Profile>
         <Img />
         <TextArea>
           <HeaderDiv>
-            <Name>Calle Sporrong</Name>
-            <Role role='master' />
+            <Name>{name}</Name>
+            <Role role="master" />
           </HeaderDiv>
           <ID>123fawj222122221f123ijc</ID>
         </TextArea>
       </Profile>
       <LinkContainer>
-        <Link name='Home' to='/' header={'true'} />
-        <Link name='Recept' to='/recept' header={'true'} />
-        <Link name='Produkt' to='/produkt' header={'true'} />
-        <Link name='Kategori' to='/produkt/kategori' header={'false'} />
-        <Link name='Land' to='/produkt/land' header={'false'} />
-        <Link name='Näringsvärde' to='/produkt/näringsvärde' header={'false'} />
-        <Link name='Tillverkare' to='/produkt/tillverkare' header={'false'} />
-        <Link name='Leverantör' to='/produkt/leverantör' header={'false'} />
+        {/* <Linkfield iconName="home" to="/" /> */}
+        <Linkfield iconName="recipes" to="/recipes" />
+        <Linkfield iconName="products" to="/products" sublinks={['country', 'category', 'nutritions', 'manufactorer', 'supplier']}/>
+        <Linkfield iconName="affiliate" to="/affiliate" />
+        <Linkfield iconName="users" to="/users" />
+        <Linkfield iconName="settings" to="/controlpanel" />
       </LinkContainer>
     </Container>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
