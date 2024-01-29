@@ -2,9 +2,8 @@
 import { useState } from "react";
 import axios from "../../utils/axios";
 import { Button, LoginContainer, Title } from "./login.styles";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setName, setImage } from "../../store/redux_slices/user.slice";
+import { setName } from "../../store/redux_slices/user.slice";
 import { isAuth } from "../../store/redux_slices/auth.slice";
 
 const Login = () => {
@@ -14,7 +13,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userID, setUserID] = useState("");
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === "email") {
@@ -88,6 +86,7 @@ const Login = () => {
         case 1: {
           const response = await axios.post(`/login/s2/${userID}`, { pin });
           if (response.status === 200) {
+            console.log('name: ', response.data)
             dispatch(setName(response.data.payload));
             dispatch(isAuth(true))
           } else {
@@ -113,7 +112,3 @@ const Login = () => {
 };
 
 export default Login;
-
-const writeMessage = (message: string) => {
-  return { type: "WRITE", payload: message };
-};

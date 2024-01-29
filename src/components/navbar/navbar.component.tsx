@@ -1,41 +1,80 @@
 // import Link from '../link/link.component'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Linkfield from "../linkfield/linkfield.component";
-import Role from "../role/role.component";
 import {
+  Account_Section,
+  Affiliate_Section,
   Container,
   HeaderDiv,
+  Home_Section,
   ID,
-  Img,
-  LinkContainer,
+  Information_Section,
+  InnerContainer,
+  Key_Section,
+  Line,
   Name,
   Profile,
   TextArea,
 } from "./navbar.styles";
 import { RootState } from "../../store/configureStore";
+import axios from "../../utils/axios";
+import { useEffect } from "react";
+import { IndexProps, updateAllIndexesWith } from "../../store/redux_slices/index.slice";
 
 function Navbar() {
-  const name = useSelector((state: RootState) => state.user.name);
+  const state = useSelector((state: RootState) => state);
+  const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    if (state.auth.isAuth) {
+      (async () => {
+        try {
+          const data = (await axios.get('http://localhost:5000/index_values')).data.payload as IndexProps | undefined
+          if (data) {
+            dispatch(updateAllIndexesWith(data))
+          }
+
+        } catch (err) {
+          console.log('failed to fetch data. ', err)
+        }
+
+      })()
+
+    }
+  }, [state.auth.isAuth])
   return (
     <Container>
-      <Profile>
-        <Img />
-        <TextArea>
-          <HeaderDiv>
-            <Name>{name}</Name>
-            <Role role="master" />
-          </HeaderDiv>
-          <ID>123fawj222122221f123ijc</ID>
-        </TextArea>
-      </Profile>
-      <LinkContainer>
-        {/* <Linkfield iconName="home" to="/" /> */}
-        <Linkfield iconName="recipes" to="/recipes" />
-        <Linkfield iconName="products" to="/products" sublinks={['country', 'category', 'nutritions', 'manufactorer', 'supplier']}/>
-        <Linkfield iconName="affiliate" to="/affiliate" />
-        <Linkfield iconName="users" to="/users" />
-        <Linkfield iconName="settings" to="/controlpanel" />
-      </LinkContainer>
+      <InnerContainer>
+        <Profile>
+          <TextArea>
+            <HeaderDiv>
+              <Name>Receptify.se</Name>
+            </HeaderDiv>
+            <ID></ID>
+          </TextArea>
+        </Profile>
+        <Home_Section>
+          <Linkfield iconName="dashboard" to="/" />
+        </Home_Section>
+        <Line />
+        <Information_Section>
+          <Linkfield  iconName="users" to="/users" />
+          <Linkfield iconName="statistics" to="/statistic" />
+        </Information_Section>
+        <Key_Section>
+          <Linkfield iconName="recipes" to="/recipes" />
+          <Linkfield  iconName="filesystem" to="/filesystem" sublinks={['countries', 'categories', 'sub_categories', 'nutritions', 'manufactorers', 'suppliers', 'products', 'producers']} />
+        </Key_Section>
+        <Line />
+        <Affiliate_Section>
+          <Linkfield iconName="affiliate" to="/affiliate" />
+        </Affiliate_Section>
+        <Account_Section>
+          <Linkfield iconName="settings" to="/controlpanel" />
+          <Linkfield iconName="signout" to="/signout" />
+        </Account_Section>
+      </InnerContainer>
     </Container>
   );
 }

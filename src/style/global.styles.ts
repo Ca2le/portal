@@ -1,8 +1,14 @@
-const global = {
-    font_name_fat: `'Roboto Condensed', sans-serif`,
-    font_weight_fat: `700`,
-    font_name_reg: `'Roboto', sans-serif`,
-    font_weight_reg: `400`,
+export const fonts = {
+    font_1: `'Roboto Condensed', sans-serif`,
+    font_2: `'Roboto', sans-serif`,
+}
+
+export enum fontWeight {
+    'thin' = 100,
+    'light' = 300,
+    'regular' = 400,
+    'medium' = 500,
+    'bold' = 700
 }
 
 
@@ -32,4 +38,38 @@ export const colorBook = {
     background-image: linear-gradient(90deg, #dbf26e 0%, #61fa74 37%, #1cfdd6 100%);
     `
 }
-export default global
+
+export const hexColors = {
+    coal: {
+        lightest: '#FAFAFA',
+        light: '#e6e6e6',
+        medium: '#e0e0e0',
+        dark: '#cacaca',
+        darkest: '#9d9d9d',
+        black: '#000000',
+    },
+    raspberry: {
+        light: '#ff829b',
+        medium: '#ff2f59',
+        dark: '#e62a50',
+        darkest: '#b3213e',
+    },
+    theme: {
+        smurf: '#3A86FF',
+        lemon: '#FFBE0B',
+        honey: '#FB5607',
+        raspberry: '#FF006E',
+        royal: '#8338EC'
+    }
+}
+
+export const navBarColors = {
+    dashboard: '#FF2F59',
+    statistics: '#FF2F59',
+    recipes: '#FF2F59',
+    affiliate: '#FF2F59',
+    filesystem: '#FF2F59',
+    settings: '#FF2F59',
+    users: '#FF2F59',
+    signout: '#FF2F59',
+}

@@ -1,14 +1,15 @@
 // Login.styles.ts
 import styled from "styled-components";
-import global, { colorBook } from "../../style/global.styles";
-
-const paddingLeft = "15";
+import { fonts, fontWeight } from "../../style/global.styles";
 
 export const Container = styled.div`
-  width: 15rem;
+  width: 16rem;
+  min-width: 16rem;
   height: 100vh;
-  background-color: #11111D;
-`;
+  background-color: #fff;
+  display: flex;
+justify-content: start;
+  `;
 
 export const Profile = styled.div`
   margin-top: 20px;
@@ -16,15 +17,28 @@ export const Profile = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  padding-left: ${paddingLeft}px;
+  padding-left: 10px;
 `;
 
-export const Img = styled.div`
-  height: 50px;
-  width: 50px;
-  border-radius: 100px;
-  ${colorBook.smurfs}
+export const Line = styled.div`
+ width: 80%;
+ height: 1px;
+ background-color: #eeeeee;
+ align-self: center;
+ margin: 10px 0 10px 0;
 `;
+export const InnerContainer = styled.div`
+ width: 100%;
+ height: 100%;
+ display: flex;
+ flex-direction: column;
+`;
+// export const Img = styled.div`
+//   height: 50px;
+//   width: 50px;
+//   border-radius: 12px;
+//   ${colorBook.smurfs}
+// `;
 
 export const TextArea = styled.div`
   display: flex;
@@ -45,22 +59,32 @@ export const HeaderDiv = styled.div`
 `;
 
 export const Name = styled.p`
-  font-family: ${global.font_name_fat};
-  font-weight: ${global.font_weight_fat};
+  font-family: ${fonts.font_1};
+  font-weight: ${fontWeight.bold};
   font-size: 22px;
-  color: #fff;
-  text-shadow: 2px 2px 4px #26223d;
+  color: #3B3B3B;
 `;
 export const ID = styled.div`
-  font-family: ${global.font_name_fat};
-  font-weight: ${global.font_weight_reg};
+  font-family: ${fonts.font_1};
+  font-weight: ${fontWeight.light};
   font-size: 12px;
   color: #aaa3d1;
 `;
-export const LinkContainer = styled.div`
-  margin-top: 10px;
-  height: auto;
-  width: 100%;
-  color: #fff;
-  font-family: ${global.font_name_fat};
+
+export const Home_Section = styled.div`
+ 
+`;
+
+export const Information_Section = styled.div`
+
+`;
+export const Key_Section = styled.div`
+ /* background-color: green; */
+`;
+export const Affiliate_Section = styled.div`
+
+`;
+export const Account_Section = styled.div`
+  margin: auto 0 30px 0;
+
 `;

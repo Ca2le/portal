@@ -1,7 +1,7 @@
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "../components/login/login.component";
 import ResetPassword from "../components/reset_password/reset_password.component";
-import Home from "./pages/home/home.page";
+import Home from "./pages/dashboard/dashboard.page";
 import Recipe from "./pages/recipe/recipe.page";
 import ProtectedRoutes from "./protective_route.component";
 const Root = () => {

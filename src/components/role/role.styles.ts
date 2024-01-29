@@ -1,6 +1,6 @@
 // Login.styles.ts
 import styled from 'styled-components';
-import global from '../../style/global.styles';
+import { fontWeight, fonts } from '../../style/global.styles';
 
 export const Container = styled.div`
     position: relative;
@@ -26,8 +26,8 @@ export const Div = styled.div<{ color: string }>`
 
 export const P = styled.p`
     color: #FFF;
-    font-family: ${global.font_name_fat};
-    font-weight: ${global.font_weight_fat};
+    font-family: ${fonts.font_1};
+    font-weight: ${fontWeight.bold};
     font-size: 8px;
     transform: scaleY(1.2);
     letter-spacing: -0.3px;
